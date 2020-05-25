@@ -1,0 +1,11 @@
+/Users/gorkemberksahan/Desktop/hackrank/bin/Debug/netcoreapp3.0/hackrank
+/Users/gorkemberksahan/Desktop/hackrank/bin/Debug/netcoreapp3.0/hackrank.deps.json
+/Users/gorkemberksahan/Desktop/hackrank/bin/Debug/netcoreapp3.0/hackrank.runtimeconfig.json
+/Users/gorkemberksahan/Desktop/hackrank/bin/Debug/netcoreapp3.0/hackrank.runtimeconfig.dev.json
+/Users/gorkemberksahan/Desktop/hackrank/bin/Debug/netcoreapp3.0/hackrank.dll
+/Users/gorkemberksahan/Desktop/hackrank/bin/Debug/netcoreapp3.0/hackrank.pdb
+/Users/gorkemberksahan/Desktop/hackrank/obj/Debug/netcoreapp3.0/hackrank.csprojAssemblyReference.cache
+/Users/gorkemberksahan/Desktop/hackrank/obj/Debug/netcoreapp3.0/hackrank.AssemblyInfoInputs.cache
+/Users/gorkemberksahan/Desktop/hackrank/obj/Debug/netcoreapp3.0/hackrank.AssemblyInfo.cs
+/Users/gorkemberksahan/Desktop/hackrank/obj/Debug/netcoreapp3.0/hackrank.dll
+/Users/gorkemberksahan/Desktop/hackrank/obj/Debug/netcoreapp3.0/hackrank.pdb
