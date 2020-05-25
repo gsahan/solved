@@ -11,61 +11,92 @@ using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using System.Text;
 using System;
+using System.Numerics;
 
 class Solution
 {
 
-    // Complete the minimumBribes function below.
-    static void minimumBribes(int[] q)
+    enum direction
     {
-        Dictionary<int, Dictionary<int, int>> hist = new Dictionary<int, Dictionary<int, int>>();
-        for (int i = 0; i < q.Length; i++)
+        none,
+        up,
+        down,
+        right,
+        left
+    }
+
+    static void move(ref int r, ref int c, direction d)
+    {
+        switch (d)
         {
-            hist[i] = new Dictionary<int, int>();
-        }
-
-        int cnt = 0;
-
-        for (int j = 0; j < q.Length; j++)
-        {
-            for (int i = 0; i < q.Length; i++)
-            {
-                if (q[i] == i + 1)
-                {
-                    continue;
-                }
-                else if( q[i] > q[i+1] )
-                {
-                    int t = q[i];
-                    q[i] = q[i+1];
-                    q[i+1] = t;
-                    cnt++;
-                }
-
-
-            }
-
-
-
-        }
-
-        static void Main(string[] args)
-        {
-            int t = Convert.ToInt32(Console.ReadLine());
-
-            for (int tItr = 0; tItr < t; tItr++)
-            {
-                int n = Convert.ToInt32(Console.ReadLine());
-
-                int[] q = Array.ConvertAll(Console.ReadLine().Split(' '), qTemp => Convert.ToInt32(qTemp))
-                ;
-                minimumBribes(q);
-            }
+            case direction.up: r++; break;
+            case direction.down: r--; break;
+            case direction.right: c++; break;
+            case direction.left: c--; break;
+            case direction.none: break;
         }
     }
 
+    static void multiMove(List<direction> dAr, ref int x, ref int y)
+    {
+        foreach (var i in dAr)
+        {
+            move(ref x, ref y, i);
+        }
+    }
 
-1 2 5 3 7 8 6 4 - 1 2 3 5 7 8 4 6 - 1 2 3 5 7 4 6 8 - 1 2 3 5 4 6 7 8 -1 2 3 4 5 6 7 8 
+    static int queensAttack(int n, int k, int r_q, int c_q, int[][] obstacles)
+    {
+        int cntMove = 0;
+        List<List<direction>> dList = new List<List<direction>>();
 
-2 5 1 3 4 - 2 1 5 3 4 - 1 2 3 5 4 - 1 2 3 4 5
-1 - 5 - 3   2-1- 
+        dList.Add(new List<direction>() { direction.left });
+        dList.Add(new List<direction>() { direction.right });
+
+        dList.Add(new List<direction>() { direction.up });
+        dList.Add(new List<direction>() { direction.down });
+
+        dList.Add(new List<direction>() { direction.up, direction.left });
+        dList.Add(new List<direction>() { direction.up, direction.right });
+
+        dList.Add(new List<direction>() { direction.down, direction.left });
+        dList.Add(new List<direction>() { direction.down, direction.right });
+
+        HashSet<string> obs = new HashSet<string>();
+
+        if (k > 0)
+            foreach (var i in obstacles)
+            {
+                obs.Add(i[0] + "_" + i[1]);
+            }
+
+        foreach (var dr in dList)
+        {
+            int r = r_q;
+            int c = c_q;
+            while (r <= n && c <= n && r > 0 && c > 0)
+            {
+                multiMove(dr, ref r, ref c);
+                if (r <= n && c <= n && r > 0 && c > 0)
+                {
+                    if (k > 0 && obs.Contains(r + "_" + c))
+                        break;
+                    else
+                        cntMove++;
+                }
+            }
+        }
+
+        return cntMove;
+
+    }
+
+
+    static void Main(string[] args)
+    {
+        var a = queensAttack(4, 0, 4, 4, null);
+
+    }
+
+
+}
