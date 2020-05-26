@@ -4,7 +4,7 @@ using System;
 class Encryption
 {
 
-    string encryption(string s)
+    static string encryption(string s)
     {
         StringBuilder sb = new StringBuilder();
 
